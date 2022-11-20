@@ -49,7 +49,7 @@ public class AspectConfig {
         catch(GlobalException ex){
             logger.info("Global Exception occurred");
         }
-        return joinPoint;
+        return "throwException";
     }
 
     
