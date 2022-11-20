@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vukkumsp.imagemodifier.effectsmanager.EffectsManager;
+import com.vukkumsp.imagemodifier.exceptions.GlobalException;
 import com.vukkumsp.imagemodifier.filemanager.LocalFileManager;
 
 @RestController
@@ -27,5 +28,10 @@ class MainController {
 
     logger.info(path);
     return "dummy";
+  }
+
+  @GetMapping("/throwException")
+  String dummyEndpoint2(){
+    throw new GlobalException("failed");
   }
 }
