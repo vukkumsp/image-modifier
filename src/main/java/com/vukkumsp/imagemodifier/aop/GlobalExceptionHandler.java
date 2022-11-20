@@ -14,31 +14,9 @@ import com.vukkumsp.imagemodifier.exceptions.GlobalException;
 
 @Aspect
 @Configuration
-public class AspectConfig {
+public class GlobalExceptionHandler {
     
-    /* 
-     * Logging
-     * 
-     * Global Exception Handling
-     * 
-     * Time Taken
-     * 
-     */
-
-    private Logger logger = LoggerFactory.getLogger(AspectConfig.class);
-
-
-    @Before("execution(* com.vukkumsp.imagemodifier.rest.*.*(..))")
-    public void logStatementBefore(JoinPoint joinPoint){
-        logger.info("Executing {}", joinPoint);
-    }
-
-    @After("execution(* com.vukkumsp.imagemodifier.rest.*.*(..))")
-    public void logStatementAfter(JoinPoint joinPoint){
-        logger.info("End {}", joinPoint);
-    }
-
-    // Exception Handling
+    private Logger logger = LoggerFactory.getLogger(RestApiLogger.class);
 
     @Around("execution(* com.vukkumsp.imagemodifier.rest.*.*(..))")
     public Object handler(ProceedingJoinPoint joinPoint) throws Throwable{
@@ -49,8 +27,6 @@ public class AspectConfig {
         catch(GlobalException ex){
             logger.info("Global Exception occurred");
         }
-        return "throwException";
+        return "throwException"; //Handle it well
     }
-
-    
 }

@@ -12,10 +12,12 @@ import java.net.URL;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LocalFileManager {
 
-    Logger logger = LoggerFactory.getLogger(LocalFileManager.class);
+    // Logger logger = LoggerFactory.getLogger(LocalFileManager.class);
 
     public static String sampleImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png";
     public static String sampleImageUrl2 = "C://Users//vukku//Documents//ImageSource//132.png";
@@ -37,7 +39,7 @@ public class LocalFileManager {
     }
 
     public void getFile() {
-        logger.info("getFile started");
+        // logger.info("getFile started");
         try (BufferedInputStream in = new BufferedInputStream(new URL(sampleImageUrl).openStream());
                 FileOutputStream fileOutputStream = new FileOutputStream("FILE_NAME")) {
             byte dataBuffer[] = new byte[1024];
@@ -50,7 +52,7 @@ public class LocalFileManager {
         } catch (IOException e) {
             // handle exception
         }
-        logger.info("getFile ended");
+        // logger.info("getFile ended");
     }
 
     public String saveImageFile(String imageFilePath) {
@@ -62,13 +64,13 @@ public class LocalFileManager {
     private String imagesFolder;
 
     public void setImagesFolder(String imagesFolder) {
-        logger.info("setImagesFolder started");
+        // logger.info("setImagesFolder started");
         this.imagesFolder = imagesFolder;
-        logger.info("setImagesFolder started");
+        // logger.info("setImagesFolder started");
     }
 
     public String fileUpload(File file) {
-        logger.info("fileUpload started");
+        // logger.info("fileUpload started");
         InputStream inputStream = null;
         OutputStream outputStream = null;
         // MultipartFile file = uploadedFile.getFile();
@@ -92,7 +94,7 @@ public class LocalFileManager {
             e.printStackTrace();
         }
 
-        logger.info("fileUpload started");
+        // logger.info("fileUpload started");
         return newFile.getAbsolutePath();
     }
 }
