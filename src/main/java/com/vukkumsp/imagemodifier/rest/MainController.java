@@ -22,12 +22,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vukkumsp.imagemodifier.effectsmanager.EffectsManager;
 import com.vukkumsp.imagemodifier.exceptions.GlobalException;
-import com.vukkumsp.imagemodifier.filemanager.FileManager;
-import com.vukkumsp.imagemodifier.filemanager.LocalFileManager;
-import com.vukkumsp.imagemodifier.filemanager.FileManager.Env;
 import com.vukkumsp.imagemodifier.model.SimpleRequest;
+import com.vukkumsp.imagemodifier.services.EffectsManager;
+import com.vukkumsp.imagemodifier.services.FileManager;
+import com.vukkumsp.imagemodifier.services.LocalFileManager;
+import com.vukkumsp.imagemodifier.services.FileManager.Env;
 
 @RestController
 class MainController {

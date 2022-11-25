@@ -1,4 +1,4 @@
-package com.vukkumsp.imagemodifier.filemanager;
+package com.vukkumsp.imagemodifier.services;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

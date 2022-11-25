@@ -1,4 +1,4 @@
-package com.vukkumsp.imagemodifier.effectsmanager;
+package com.vukkumsp.imagemodifier.services;
 
 import java.io.File;
 import java.io.IOException;
