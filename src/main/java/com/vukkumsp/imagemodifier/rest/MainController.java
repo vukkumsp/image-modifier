@@ -1,10 +1,16 @@
 package com.vukkumsp.imagemodifier.rest;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -62,10 +68,31 @@ class MainController {
 
   @PostMapping(value = "/shadeIt2", produces = MediaType.IMAGE_PNG_VALUE)
   public @ResponseBody byte[] postImage(@RequestBody SimpleRequest simpleRequest) throws IOException {
-    
+    //works only for local image links
+    //example: "C://Users//vukku//Documents//ImageSource//132.png"
     EffectsManager em = new EffectsManager(simpleRequest.getImageSourcePath());
 
     em.applyDemoEffect2("C://Users//vukku//Documents//ImageDestination//im2.png");
+
+    File initialFile = new File("C://Users//vukku//Documents//ImageDestination//im2.png");
+    InputStream targetStream = new FileInputStream(initialFile);
+
+    return IOUtils.toByteArray(targetStream);
+  }
+
+  @PostMapping(value = "/shadeIt3", produces = MediaType.IMAGE_PNG_VALUE)
+  public @ResponseBody byte[] postImage2(@RequestBody SimpleRequest simpleRequest) throws IOException {
+    
+    LocalFileManager fm = new LocalFileManager();
+
+    InputStream in = new URL(simpleRequest.getImageSourcePath()).openStream();
+    Files.copy(in, Paths.get("C://Users//vukku//Documents//ImageSource//newFile.png"), StandardCopyOption.REPLACE_EXISTING);
+
+    // String localPath = fm.fileUpload(new File(simpleRequest.getImageSourcePath()));
+
+    EffectsManager em = new EffectsManager("C://Users//vukku//Documents//ImageSource//newFile.png");
+
+    em.applyDemoEffect2("C://Users//vukku//Documents//ImageDestination//newFile.png");
 
     File initialFile = new File("C://Users//vukku//Documents//ImageDestination//im2.png");
     InputStream targetStream = new FileInputStream(initialFile);
