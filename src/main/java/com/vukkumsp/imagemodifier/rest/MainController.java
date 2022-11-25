@@ -23,33 +23,19 @@ import com.vukkumsp.imagemodifier.exceptions.GlobalException;
 import com.vukkumsp.imagemodifier.model.SimpleRequest;
 import com.vukkumsp.imagemodifier.services.EffectsManager;
 import com.vukkumsp.imagemodifier.services.FileManager;
+import com.vukkumsp.imagemodifier.services.ImageModifierService;
 import com.vukkumsp.imagemodifier.services.FileManager.Env;
 
 @RestController
 class MainController {
   Logger logger = LoggerFactory.getLogger(MainController.class);
 
-  @PostMapping(value = "/shadeIt3", produces = MediaType.IMAGE_PNG_VALUE)
-  public @ResponseBody byte[] postImage2(@RequestBody SimpleRequest simpleRequest) throws IOException {
+  @PostMapping(value = "/applyEffect", produces = MediaType.IMAGE_PNG_VALUE)
+  public @ResponseBody byte[] applyEffect(@RequestBody SimpleRequest simpleRequest) throws IOException {
     
-    FileManager fm = new FileManager();
-    String uploadedFilePath = fm.uploadFileFromLink(simpleRequest.getImageSourcePath(), Env.LOCAL);
+    ImageModifierService ims = new ImageModifierService();
 
-    InputStream in = new URL(simpleRequest.getImageSourcePath()).openStream();
-    Files.copy(in, Paths.get(uploadedFilePath), StandardCopyOption.REPLACE_EXISTING);
-
-    // String localPath = fm.fileUpload(new File(simpleRequest.getImageSourcePath()));
-
-    EffectsManager em = new EffectsManager(uploadedFilePath);
-
-    String desFilePath = fm.generateDesPath(simpleRequest.getImageSourcePath(), Env.LOCAL);
-
-    em.applyDemoEffect2(desFilePath);
-
-    File initialFile = new File(desFilePath);
-    InputStream targetStream = new FileInputStream(initialFile);
-
-    return IOUtils.toByteArray(targetStream);
+    return ims.applyEffect(simpleRequest.getImageSourcePath(), Env.LOCAL);
   }
 
   @GetMapping("/throwException")
