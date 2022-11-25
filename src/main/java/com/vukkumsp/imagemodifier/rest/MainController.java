@@ -1,15 +1,7 @@
 package com.vukkumsp.imagemodifier.rest;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -22,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vukkumsp.imagemodifier.exceptions.GlobalException;
 import com.vukkumsp.imagemodifier.model.SimpleRequest;
 import com.vukkumsp.imagemodifier.model.SimpleResponse;
-import com.vukkumsp.imagemodifier.services.EffectsManager;
-import com.vukkumsp.imagemodifier.services.FileManager;
 import com.vukkumsp.imagemodifier.services.ImageModifierService;
 import com.vukkumsp.imagemodifier.services.FileManager.Env;
 
