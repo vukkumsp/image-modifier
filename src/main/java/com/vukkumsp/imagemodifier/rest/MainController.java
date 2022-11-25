@@ -27,7 +27,7 @@ class MainController {
     
     ImageModifierService ims = new ImageModifierService();
     byte[] imageData = ims.applyEffect(simpleRequest.getImageSourcePath(), simpleRequest.getEffect(), Env.LOCAL);
-    SimpleResponse simpleResponse = new SimpleResponse(simpleRequest.getImageSourcePath(), imageData, simpleRequest.getEffect());
+    SimpleResponse simpleResponse = new SimpleResponse(simpleRequest, imageData);
     
     logger.info("Endpoint /applyEffect ended with response {}", simpleResponse);
     return simpleResponse.getImageData();

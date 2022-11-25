@@ -5,6 +5,12 @@ public class SimpleResponse {
     byte[] imageData;
     String effectApplied;
 
+    public SimpleResponse(SimpleRequest simpleRequest, byte[] imageData) {
+        this.imageSourceLink = simpleRequest.getImageSourcePath();
+        this.imageData = imageData;
+        this.effectApplied = simpleRequest.getEffect();
+    }  
+
     public SimpleResponse(String imageSourceLink, byte[] imageData, String effectApplied) {
         this.imageSourceLink = imageSourceLink;
         this.imageData = imageData;
