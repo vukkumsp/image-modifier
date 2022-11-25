@@ -53,22 +53,22 @@ public class EffectsManager {
             return;
         }
 
-        for (int y=0; y<image.getHeight(); y++) {
-            for(int x=0; x<image.getWidth(); x++) {
-                image.getBand(1).pixels[y][x] = 0;
-                image.getBand(2).pixels[y][x] = 0;
-            }
-        }
+        // for (int y=0; y<image.getHeight(); y++) {
+        // // Converts image to red filtered
+        //     for(int x=0; x<image.getWidth(); x++) {
+        //         image.getBand(1).pixels[y][x] = 0;
+        //         image.getBand(2).pixels[y][x] = 0;
+        //     }
+        // }
 
-        image.drawShapeFilled(new Ellipse(700f, 450f, 20f, 10f, 0f), RGBColour.WHITE);
-        image.drawShapeFilled(new Ellipse(650f, 425f, 25f, 12f, 0f), RGBColour.WHITE);
-        image.drawShapeFilled(new Ellipse(600f, 380f, 30f, 15f, 0f), RGBColour.WHITE);
-        image.drawShapeFilled(new Ellipse(500f, 300f, 100f, 70f, 0f), RGBColour.WHITE);
-        image.drawText("OpenIMAJ is", 425, 300, HersheyFont.ASTROLOGY, 20, RGBColour.BLACK);
-        image.drawText("Awesome", 425, 330, HersheyFont.ASTROLOGY, 20, RGBColour.BLACK);
+        // image.drawShapeFilled(new Ellipse(700f, 450f, 20f, 10f, 0f), RGBColour.WHITE);
+        // image.drawShapeFilled(new Ellipse(650f, 425f, 25f, 12f, 0f), RGBColour.WHITE);
+        // image.drawShapeFilled(new Ellipse(600f, 380f, 30f, 15f, 0f), RGBColour.WHITE);
+        // image.drawShapeFilled(new Ellipse(500f, 300f, 100f, 70f, 0f), RGBColour.WHITE);
+        image.drawText("OpenIMAJ is", 200, 300, HersheyFont.ASTROLOGY, 20, RGBColour.BLACK);
+        image.drawText("Awesome", 200, 330, HersheyFont.ASTROLOGY, 20, RGBColour.BLACK);
 
         ImageUtilities.write(image, new File(destinationPath));
         
-
     }
 }
