@@ -1,12 +1,9 @@
 package com.vukkumsp.imagemodifier.rest;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -26,7 +23,6 @@ import com.vukkumsp.imagemodifier.exceptions.GlobalException;
 import com.vukkumsp.imagemodifier.model.SimpleRequest;
 import com.vukkumsp.imagemodifier.services.EffectsManager;
 import com.vukkumsp.imagemodifier.services.FileManager;
-import com.vukkumsp.imagemodifier.services.LocalFileManager;
 import com.vukkumsp.imagemodifier.services.FileManager.Env;
 
 @RestController
