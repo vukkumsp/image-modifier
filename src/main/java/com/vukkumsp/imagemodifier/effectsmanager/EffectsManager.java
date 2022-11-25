@@ -45,6 +45,7 @@ public class EffectsManager {
     }
 
     public void applyDemoEffect2(String destinationPath) throws IOException{
+        // http://openimaj.org/tutorial/index.html
         MBFImage image = ImageUtilities.readMBFAlpha(new File(this.imagePath));
 
         // ImageUtilities.readMBFAlpha(null)
