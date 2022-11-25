@@ -46,10 +46,29 @@
 			<version>1.51h</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.openimaj</groupId>
+			<artifactId>core-image</artifactId>
+			<version>1.3.5</version>
+		</dependency>
+
 		<!-- Logging with AOP -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.8.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.9</version>
 		</dependency>
 		
 		<dependency>

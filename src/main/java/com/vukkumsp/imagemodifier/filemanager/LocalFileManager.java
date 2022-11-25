@@ -20,7 +20,7 @@ public class LocalFileManager {
     // Logger logger = LoggerFactory.getLogger(LocalFileManager.class);
 
     public static String sampleImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png";
-    public static String sampleImageUrl2 = "C://Users//vukku//Documents//ImageSource//132.png";
+    public static String sampleImageUrl2 = "C://Users//vukku//Documents//ImageSource//132.jpeg";
 
     URL baseUrl;
 

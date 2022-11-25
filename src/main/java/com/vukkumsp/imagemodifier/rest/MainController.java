@@ -1,5 +1,6 @@
 package com.vukkumsp.imagemodifier.rest;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.slf4j.Logger;
@@ -26,12 +27,54 @@ class MainController {
     fm.setImagesFolder("C://Users//vukku//Documents//ImageDestination//");
     String path = fm.saveImageFile(LocalFileManager.sampleImageUrl2);
 
-    logger.info(path);
+    logger.info("Path: {}", path);
     return "dummy";
   }
 
+  @GetMapping("/dummy2")
+  String dummyEndpoint2() throws MalformedURLException {
+    LocalFileManager fm = new LocalFileManager();
+    // fm.getFile();
+    //-----------
+    // EffectsManager em = new EffectsManager(FileManager.sampleImageUrl);
+    // em.applyDemoEffect();
+    //--------
+    // fm.setImagesFolder("C://Users//vukku//Documents//ImageDestination//");
+
+    EffectsManager em = new EffectsManager(LocalFileManager.sampleImageUrl2);
+
+    em.applyDemoEffect("C://Users//vukku//Documents//ImageDestination//");
+    
+
+    // String path = fm.saveImageFile(LocalFileManager.sampleImageUrl2);
+
+    // logger.info("Path: {}", path);
+    return "dummy2";
+  }
+
+  @GetMapping("/dummy3")
+  String dummyEndpoint3() throws IOException {
+    LocalFileManager fm = new LocalFileManager();
+    // fm.getFile();
+    //-----------
+    // EffectsManager em = new EffectsManager(FileManager.sampleImageUrl);
+    // em.applyDemoEffect();
+    //--------
+    // fm.setImagesFolder("C://Users//vukku//Documents//ImageDestination//");
+
+    EffectsManager em = new EffectsManager(LocalFileManager.sampleImageUrl2);
+
+    em.applyDemoEffect2("C://Users//vukku//Documents//ImageDestination//im2.jpeg");
+    
+
+    // String path = fm.saveImageFile(LocalFileManager.sampleImageUrl2);
+
+    // logger.info("Path: {}", path);
+    return "dummy3";
+  }
+
   @GetMapping("/throwException")
-  String dummyEndpoint2(){
+  String throwException(){
     throw new GlobalException("failed");
   }
 }
