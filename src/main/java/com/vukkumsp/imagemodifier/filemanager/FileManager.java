@@ -2,14 +2,9 @@ package com.vukkumsp.imagemodifier.filemanager;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.nio.channels.ReadableByteChannel;
 
 public class FileManager {
@@ -69,7 +64,6 @@ public class FileManager {
         // Method 2: file data will be passed from input stream to output stream without buffer in app memory
         ReadableByteChannel readableByteChannel = Channels.newChannel(new URL(onlineLink).openStream());
         FileOutputStream fileOutputStream = new FileOutputStream(uploadSrcPath);
-        // FileChannel fileChannel = fileOutputStream.getChannel();
         fileOutputStream.getChannel().transferFrom(readableByteChannel, 0, Long.MAX_VALUE);
         fileOutputStream.close();
 
