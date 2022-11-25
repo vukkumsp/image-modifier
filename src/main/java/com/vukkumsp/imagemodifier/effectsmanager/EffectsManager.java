@@ -45,7 +45,9 @@ public class EffectsManager {
     }
 
     public void applyDemoEffect2(String destinationPath) throws IOException{
-        MBFImage image = ImageUtilities.readMBF(new File(this.imagePath));
+        MBFImage image = ImageUtilities.readMBFAlpha(new File(this.imagePath));
+
+        // ImageUtilities.readMBFAlpha(null)
 
         if(image == null){
             System.out.println("image path is "+ this.imagePath);
