@@ -1,12 +1,16 @@
 package com.vukkumsp.imagemodifier.filemanager;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.nio.channels.ReadableByteChannel;
 
 public class FileManager {
     static String srcFolderPath = "C://Users//vukku//Documents//ImageSource";
@@ -53,10 +57,22 @@ public class FileManager {
      * LOCAL File Storage methods
      */
 
+     //https://www.baeldung.com/java-download-file
     private String localUploadFileFromLink(String onlineLink) throws MalformedURLException, IOException {
         String uploadSrcPath = srcFolderPath + divider + getFileNameFromOnlineLink(onlineLink);
-        InputStream in = new URL(onlineLink).openStream();
-        Files.copy(in, Paths.get(uploadSrcPath), StandardCopyOption.REPLACE_EXISTING);
+        
+        // Method 1: keeps the file in buffer of app memory
+        // InputStream in = new URL(onlineLink).openStream();
+        // Files.copy(in, Paths.get(uploadSrcPath), StandardCopyOption.REPLACE_EXISTING);
+        
+
+        // Method 2: file data will be passed from input stream to output stream without buffer in app memory
+        ReadableByteChannel readableByteChannel = Channels.newChannel(new URL(onlineLink).openStream());
+        FileOutputStream fileOutputStream = new FileOutputStream(uploadSrcPath);
+        // FileChannel fileChannel = fileOutputStream.getChannel();
+        fileOutputStream.getChannel().transferFrom(readableByteChannel, 0, Long.MAX_VALUE);
+        fileOutputStream.close();
+
         return uploadSrcPath;
     }
 
