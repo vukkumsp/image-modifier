@@ -7,6 +7,8 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
+import com.vukkumsp.imagemodifier.exceptions.IncorrectEnvironmentException;
+
 public class FileManager {
     static String srcFolderPath = "C://Users//vukku//Documents//ImageSource";
     static String desFolderPath = "C://Users//vukku//Documents//ImageDestination";
@@ -28,8 +30,9 @@ public class FileManager {
         switch(env){
             case LOCAL:
                 return this.localUploadFileFromLink(onlineLink);
+            default:
+                throw new IncorrectEnvironmentException("Incorrect environment name used");
         }
-        return null;
     }
 
     public String getFileNameFromOnlineLink(String onlineLink) {
@@ -44,8 +47,9 @@ public class FileManager {
         switch(env){
             case LOCAL:
                 return this.localGenerateDesPath(onlineLink);
+            default:
+                throw new IncorrectEnvironmentException("Incorrect environment name used");
         }
-        return null;
     }
 
     /* 

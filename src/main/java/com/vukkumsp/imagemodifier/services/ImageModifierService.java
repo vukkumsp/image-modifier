@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 
 import org.apache.commons.io.IOUtils;
 
+import com.vukkumsp.imagemodifier.exceptions.IncorrectEffectException;
 import com.vukkumsp.imagemodifier.services.EffectsManager.Effect;
 import com.vukkumsp.imagemodifier.services.FileManager.Env;
 
@@ -26,6 +27,8 @@ public class ImageModifierService {
             case "SILHOUETTE":
                 em.applyEffect(desFilePath, Effect.SILHOUETTE);
                 break;
+            default:
+                throw new IncorrectEffectException("Incorrect effect name used");
         }
 
         InputStream targetStream = new FileInputStream(new File(desFilePath));

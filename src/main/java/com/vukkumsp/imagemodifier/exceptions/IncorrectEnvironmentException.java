@@ -1,15 +1,13 @@
 package com.vukkumsp.imagemodifier.exceptions;
 
-public class GlobalException extends RuntimeException {
-
+public class IncorrectEnvironmentException extends RuntimeException {
     String message;
 
-    public GlobalException(String message) {
+    public IncorrectEnvironmentException(String message) {
         this.message = message;
     }
 
     public String getMessage(){
         return this.message;
     }
-    
 }

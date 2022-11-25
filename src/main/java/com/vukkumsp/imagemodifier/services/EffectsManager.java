@@ -6,6 +6,8 @@ import java.io.IOException;
 import org.openimaj.image.ImageUtilities;
 import org.openimaj.image.MBFImage;
 
+import com.vukkumsp.imagemodifier.exceptions.IncorrectEffectException;
+
 public class EffectsManager {
 
     String imagePath;
@@ -26,6 +28,8 @@ public class EffectsManager {
             case SILHOUETTE:
                 applySilhouetteEffect(image);
                 break;
+            default:
+                throw new IncorrectEffectException("Incorrect effect name used");
         }
         
         ImageUtilities.write(image, new File(destinationPath));
