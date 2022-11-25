@@ -33,55 +33,6 @@ import com.vukkumsp.imagemodifier.services.FileManager.Env;
 class MainController {
   Logger logger = LoggerFactory.getLogger(MainController.class);
 
-  @GetMapping("/dummy0")
-  String dummyEndpoint0() throws MalformedURLException {
-    LocalFileManager fm = new LocalFileManager();
-
-    fm.setImagesFolder("C://Users//vukku//Documents//ImageDestination//");
-    String path = fm.saveImageFile(LocalFileManager.sampleImageUrl2);
-
-    logger.info("Path: {}", path);
-    return "dummy";
-  }
-
-  @GetMapping("/dummy1")
-  String dummyEndpoint1() throws IOException {
-
-    EffectsManager em = new EffectsManager(LocalFileManager.sampleImageUrl2);
-
-    em.applyDemoEffect2("C://Users//vukku//Documents//ImageDestination//im2.png");
-
-    return "dummy1";
-  }
-
-  // https://www.baeldung.com/spring-controller-return-image-file
-  // https://www.baeldung.com/convert-file-to-input-stream
-  @GetMapping(value = "/shadeIt", produces = MediaType.IMAGE_PNG_VALUE)
-  public @ResponseBody byte[] getImage() throws IOException {
-    EffectsManager em = new EffectsManager(LocalFileManager.sampleImageUrl2);
-
-    em.applyDemoEffect2("C://Users//vukku//Documents//ImageDestination//im2.png");
-
-    File initialFile = new File("C://Users//vukku//Documents//ImageDestination//im2.png");
-    InputStream targetStream = new FileInputStream(initialFile);
-
-    return IOUtils.toByteArray(targetStream);
-  }
-
-  @PostMapping(value = "/shadeIt2", produces = MediaType.IMAGE_PNG_VALUE)
-  public @ResponseBody byte[] postImage(@RequestBody SimpleRequest simpleRequest) throws IOException {
-    //works only for local image links
-    //example: "C://Users//vukku//Documents//ImageSource//132.png"
-    EffectsManager em = new EffectsManager(simpleRequest.getImageSourcePath());
-
-    em.applyDemoEffect2("C://Users//vukku//Documents//ImageDestination//im2.png");
-
-    File initialFile = new File("C://Users//vukku//Documents//ImageDestination//im2.png");
-    InputStream targetStream = new FileInputStream(initialFile);
-
-    return IOUtils.toByteArray(targetStream);
-  }
-
   @PostMapping(value = "/shadeIt3", produces = MediaType.IMAGE_PNG_VALUE)
   public @ResponseBody byte[] postImage2(@RequestBody SimpleRequest simpleRequest) throws IOException {
     
