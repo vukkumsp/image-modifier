@@ -10,36 +10,35 @@ public class EffectsManager {
 
     String imagePath;
 
-    public EffectsManager(String path){
+    public static enum Effect {
+        SILHOUETTE
+    };
+
+    public EffectsManager(String path) {
         this.imagePath = path;
     }
 
-    public void applyDemoEffect2(String destinationPath) throws IOException{
+    public void applyEffect(String destinationPath, Effect effect) throws IOException {
         // http://openimaj.org/tutorial/index.html
         MBFImage image = ImageUtilities.readMBFAlpha(new File(this.imagePath));
 
-        
-        // ImageUtilities.readMBFAlpha(null)
-
-        if(image == null){
-            System.out.println("image path is "+ this.imagePath);
-            System.out.println("imp is null");
-            return;
+        switch(effect) {
+            case SILHOUETTE:
+                applySilhouetteEffect(image);
+                break;
         }
+        
+        ImageUtilities.write(image, new File(destinationPath));
+    }
 
-        for (int y=0; y<image.getHeight(); y++) {
-        // shade it
-            for(int x=0; x<image.getWidth(); x++) {
-                image.getBand(0).pixels[y][x] = 0; //red
-                image.getBand(1).pixels[y][x] = 0; //blue
-                image.getBand(2).pixels[y][x] = 0; //green
-                
+    void applySilhouetteEffect(MBFImage image) {
+        for (int y = 0; y < image.getHeight(); y++) {
+            // shade it
+            for (int x = 0; x < image.getWidth(); x++) {
+                image.getBand(0).pixels[y][x] = 0; // red
+                image.getBand(1).pixels[y][x] = 0; // blue
+                image.getBand(2).pixels[y][x] = 0; // green
             }
         }
-
-
-        ImageUtilities.write(image, new File(destinationPath));
-
-        
     }
 }

@@ -20,4 +20,12 @@ public class SimpleRequest {
         this.effect = effect;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+            " imageSourcePath='" + getImageSourcePath() + "'" +
+            ", effect='" + getEffect() + "'" +
+            "}";
+    }
+
 }

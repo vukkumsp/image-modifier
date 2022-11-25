@@ -32,10 +32,13 @@ class MainController {
 
   @PostMapping(value = "/applyEffect", produces = MediaType.IMAGE_PNG_VALUE)
   public @ResponseBody byte[] applyEffect(@RequestBody SimpleRequest simpleRequest) throws IOException {
+    logger.info("Endpoint /applyEffect started with request {}", simpleRequest);
     
     ImageModifierService ims = new ImageModifierService();
-
-    return ims.applyEffect(simpleRequest.getImageSourcePath(), Env.LOCAL);
+    byte[] response = ims.applyEffect(simpleRequest.getImageSourcePath(), simpleRequest.getEffect(), Env.LOCAL);
+    
+    logger.info("Endpoint /applyEffect ended");
+    return response;
   }
 
   @GetMapping("/throwException")
