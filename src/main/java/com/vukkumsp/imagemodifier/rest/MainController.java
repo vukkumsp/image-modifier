@@ -26,6 +26,7 @@ import com.vukkumsp.imagemodifier.effectsmanager.EffectsManager;
 import com.vukkumsp.imagemodifier.exceptions.GlobalException;
 import com.vukkumsp.imagemodifier.filemanager.FileManager;
 import com.vukkumsp.imagemodifier.filemanager.LocalFileManager;
+import com.vukkumsp.imagemodifier.filemanager.FileManager.Env;
 import com.vukkumsp.imagemodifier.model.SimpleRequest;
 
 @RestController
@@ -85,7 +86,7 @@ class MainController {
   public @ResponseBody byte[] postImage2(@RequestBody SimpleRequest simpleRequest) throws IOException {
     
     FileManager fm = new FileManager();
-    String uploadedFilePath = fm.uploadFileFromLink(simpleRequest.getImageSourcePath());
+    String uploadedFilePath = fm.uploadFileFromLink(simpleRequest.getImageSourcePath(), Env.LOCAL);
 
     InputStream in = new URL(simpleRequest.getImageSourcePath()).openStream();
     Files.copy(in, Paths.get(uploadedFilePath), StandardCopyOption.REPLACE_EXISTING);
@@ -94,7 +95,7 @@ class MainController {
 
     EffectsManager em = new EffectsManager(uploadedFilePath);
 
-    String desFilePath = fm.generateDesPath(simpleRequest.getImageSourcePath());
+    String desFilePath = fm.generateDesPath(simpleRequest.getImageSourcePath(), Env.LOCAL);
 
     em.applyDemoEffect2(desFilePath);
 
