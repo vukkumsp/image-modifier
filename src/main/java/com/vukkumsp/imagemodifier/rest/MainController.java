@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vukkumsp.imagemodifier.exceptions.GlobalException;
 import com.vukkumsp.imagemodifier.model.SimpleRequest;
+import com.vukkumsp.imagemodifier.model.SimpleResponse;
 import com.vukkumsp.imagemodifier.services.EffectsManager;
 import com.vukkumsp.imagemodifier.services.FileManager;
 import com.vukkumsp.imagemodifier.services.ImageModifierService;
@@ -35,10 +36,11 @@ class MainController {
     logger.info("Endpoint /applyEffect started with request {}", simpleRequest);
     
     ImageModifierService ims = new ImageModifierService();
-    byte[] response = ims.applyEffect(simpleRequest.getImageSourcePath(), simpleRequest.getEffect(), Env.LOCAL);
+    byte[] imageData = ims.applyEffect(simpleRequest.getImageSourcePath(), simpleRequest.getEffect(), Env.LOCAL);
+    SimpleResponse simpleResponse = new SimpleResponse(simpleRequest.getImageSourcePath(), imageData, simpleRequest.getEffect());
     
-    logger.info("Endpoint /applyEffect ended");
-    return response;
+    logger.info("Endpoint /applyEffect ended with response {}", simpleResponse);
+    return simpleResponse.getImageData();
   }
 
   @GetMapping("/throwException")
