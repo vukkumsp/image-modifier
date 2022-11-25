@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vukkumsp.imagemodifier.effectsmanager.EffectsManager;
 import com.vukkumsp.imagemodifier.exceptions.GlobalException;
+import com.vukkumsp.imagemodifier.filemanager.FileManager;
 import com.vukkumsp.imagemodifier.filemanager.LocalFileManager;
 import com.vukkumsp.imagemodifier.model.SimpleRequest;
 
@@ -83,18 +84,21 @@ class MainController {
   @PostMapping(value = "/shadeIt3", produces = MediaType.IMAGE_PNG_VALUE)
   public @ResponseBody byte[] postImage2(@RequestBody SimpleRequest simpleRequest) throws IOException {
     
-    LocalFileManager fm = new LocalFileManager();
+    FileManager fm = new FileManager();
+    String uploadedFilePath = fm.uploadFileFromLink(simpleRequest.getImageSourcePath());
 
     InputStream in = new URL(simpleRequest.getImageSourcePath()).openStream();
-    Files.copy(in, Paths.get("C://Users//vukku//Documents//ImageSource//newFile.png"), StandardCopyOption.REPLACE_EXISTING);
+    Files.copy(in, Paths.get(uploadedFilePath), StandardCopyOption.REPLACE_EXISTING);
 
     // String localPath = fm.fileUpload(new File(simpleRequest.getImageSourcePath()));
 
-    EffectsManager em = new EffectsManager("C://Users//vukku//Documents//ImageSource//newFile.png");
+    EffectsManager em = new EffectsManager(uploadedFilePath);
 
-    em.applyDemoEffect2("C://Users//vukku//Documents//ImageDestination//newFile.png");
+    String desFilePath = fm.generateDesPath(simpleRequest.getImageSourcePath());
 
-    File initialFile = new File("C://Users//vukku//Documents//ImageDestination//im2.png");
+    em.applyDemoEffect2(desFilePath);
+
+    File initialFile = new File(desFilePath);
     InputStream targetStream = new FileInputStream(initialFile);
 
     return IOUtils.toByteArray(targetStream);
