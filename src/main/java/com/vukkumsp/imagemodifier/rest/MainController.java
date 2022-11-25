@@ -16,14 +16,10 @@ import com.vukkumsp.imagemodifier.filemanager.LocalFileManager;
 class MainController {
   Logger logger = LoggerFactory.getLogger(MainController.class);
 
-  @GetMapping("/dummy")
-  String dummyEndpoint() throws MalformedURLException {
+  @GetMapping("/dummy0")
+  String dummyEndpoint0() throws MalformedURLException {
     LocalFileManager fm = new LocalFileManager();
-    // fm.getFile();
-    //-----------
-    // EffectsManager em = new EffectsManager(FileManager.sampleImageUrl);
-    // em.applyDemoEffect();
-    //--------
+
     fm.setImagesFolder("C://Users//vukku//Documents//ImageDestination//");
     String path = fm.saveImageFile(LocalFileManager.sampleImageUrl2);
 
@@ -31,46 +27,14 @@ class MainController {
     return "dummy";
   }
 
-  @GetMapping("/dummy2")
-  String dummyEndpoint2() throws MalformedURLException {
-    LocalFileManager fm = new LocalFileManager();
-    // fm.getFile();
-    //-----------
-    // EffectsManager em = new EffectsManager(FileManager.sampleImageUrl);
-    // em.applyDemoEffect();
-    //--------
-    // fm.setImagesFolder("C://Users//vukku//Documents//ImageDestination//");
-
-    EffectsManager em = new EffectsManager(LocalFileManager.sampleImageUrl2);
-
-    em.applyDemoEffect("C://Users//vukku//Documents//ImageDestination//");
-    
-
-    // String path = fm.saveImageFile(LocalFileManager.sampleImageUrl2);
-
-    // logger.info("Path: {}", path);
-    return "dummy2";
-  }
-
-  @GetMapping("/dummy3")
-  String dummyEndpoint3() throws IOException {
-    LocalFileManager fm = new LocalFileManager();
-    // fm.getFile();
-    //-----------
-    // EffectsManager em = new EffectsManager(FileManager.sampleImageUrl);
-    // em.applyDemoEffect();
-    //--------
-    // fm.setImagesFolder("C://Users//vukku//Documents//ImageDestination//");
+  @GetMapping("/dummy1")
+  String dummyEndpoint1() throws IOException {
 
     EffectsManager em = new EffectsManager(LocalFileManager.sampleImageUrl2);
 
     em.applyDemoEffect2("C://Users//vukku//Documents//ImageDestination//im2.png");
     
-
-    // String path = fm.saveImageFile(LocalFileManager.sampleImageUrl2);
-
-    // logger.info("Path: {}", path);
-    return "dummy3";
+    return "dummy1";
   }
 
   @GetMapping("/throwException")

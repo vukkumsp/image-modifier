@@ -22,28 +22,6 @@ public class EffectsManager {
         this.imagePath = path;
     }
 
-
-    
-    public void applyDemoEffect(String destinationPath){
-        ImagePlus imp = IJ.openImage(this.imagePath);
-        
-
-        if(imp == null){
-            System.out.println("image path is "+ this.imagePath);
-            System.out.println("imp is null");
-            return;
-        }
-
-        ImageProcessor ip = imp.getProcessor();
-        ip.setColor(Color.BLUE);
-        ip.setLineWidth(4);
-        ip.drawRect(10, 10, imp.getWidth() - 20, imp.getHeight() - 20);
-
-        IJ.saveAs(imp, "jpg", destinationPath);
-
-        // imp.show();
-    }
-
     public void applyDemoEffect2(String destinationPath) throws IOException{
         // http://openimaj.org/tutorial/index.html
         MBFImage image = ImageUtilities.readMBFAlpha(new File(this.imagePath));
