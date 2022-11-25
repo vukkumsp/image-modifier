@@ -64,7 +64,7 @@ class MainController {
 
     EffectsManager em = new EffectsManager(LocalFileManager.sampleImageUrl2);
 
-    em.applyDemoEffect2("C://Users//vukku//Documents//ImageDestination//im2.jpeg");
+    em.applyDemoEffect2("C://Users//vukku//Documents//ImageDestination//im2.png");
     
 
     // String path = fm.saveImageFile(LocalFileManager.sampleImageUrl2);
